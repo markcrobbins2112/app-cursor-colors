@@ -1,0 +1,43 @@
+/* DEFAULT STATE: When you click away to another app (Dimmed/Gray) */
+.monaco-workbench {
+  box-shadow: inset 0 0 15px 3px rgba(0, 255, 106, 0.3) !important;
+  transition: box-shadow 0.2s ease; /* Makes the transition smooth */
+}
+
+/* FOCUSED STATE: When you click into the editor or any panel (Neon Green) */
+.monaco-workbench:focus-within {
+  box-shadow: inset 0 0 15px 3px rgba(0, 255, 106, 0.6) !important;
+}
+
+/* Keeps your inner panels shrunken so the glow layer shows properly */
+.monaco-workbench .part {
+  margin: 2.5px !important;
+  height: calc(100% - 5px) !important;
+}
+/* Color the main sidebar layout border */
+.part.sidebar {
+  border-right: 1px solid rgba(93, 0, 255, 0.1) !important;
+}
+
+/* Color the dragging handler line that sits on top of it */
+.monaco-sash.vertical {
+  background-color: rgba(93, 0, 255, 0.2) !important;
+}
+.monaco-sash.vertical:hover {
+  background-color: rgba(85, 0, 255, 0.4) !important;
+}
+
+/* Force the active tab top border to display on stacked groups */
+.tab.active.has-top-border {
+  z-index: 10 !important; /* Pushes the border layer above the group grid line */
+}
+.tab.inactive {
+  border-top: 2px solid #ff008050 !important; /* Forces a thicker, cleaner line */
+}
+.tab.active {
+  border-top: 2px solid #ff007f !important; /* Forces a thicker, cleaner line */
+}
+x.tab.active {
+  xbox-shadow: inset 0 1px 0 0 #ff008066 !important; /* Casts a sharp pixel line inside the tab frame */
+  xbox-shadow: inset 0 1px 0 0 #ff007f !important; /* Casts a sharp pixel line inside the tab frame */
+}
