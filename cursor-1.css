@@ -1,0 +1,167 @@
+/* DEFAULT STATE: When you click away to another app (Dimmed/Gray) */
+.monaco-workbench {
+    box-shadow: inset 0 0 15px 3px rgba(0, 255, 106, 0.3) !important;
+    transition: box-shadow 0.2s ease; /* Makes the transition smooth */
+  }
+  
+  /* FOCUSED STATE: When you click into the editor or any panel (Neon Green) */
+  .monaco-workbench:focus-within {
+    box-shadow: inset 0 0 15px 3px rgba(0, 255, 106, 0.6) !important;
+  }
+  
+  /* Keeps your inner panels shrunken so the glow layer shows properly */
+  .monaco-workbench .part {
+    margin: 2.5px !important;
+    height: calc(100% - 5px) !important;
+  }
+  /* Color the main sidebar layout border */
+  .part.sidebar {
+    border-right: 1px solid rgba(93, 0, 255, 0.1) !important;
+  }
+  
+  /* Color the dragging handler line that sits on top of it */
+  .monaco-sash.vertical {
+    background-color: rgba(93, 0, 255, 0.2) !important;
+  }
+  .monaco-sash.vertical:hover {
+    background-color: rgba(85, 0, 255, 0.4) !important;
+  }
+  
+  /* Force the active tab top border to display on stacked groups */
+  .tab.active.has-top-border {
+    z-index: 10 !important; /* Pushes the border layer above the group grid line */
+  }
+  .tab.inactive {
+    border-top: 2px solid #ff008050 !important; /* Forces a thicker, cleaner line */
+  }
+  .tab.active {
+    border-top: 2px solid #ff007f !important; /* Forces a thicker, cleaner line */
+  }
+  x.tab.active {
+    xbox-shadow: inset 0 1px 0 0 #ff008066 !important; /* Casts a sharp pixel line inside the tab frame */
+    xbox-shadow: inset 0 1px 0 0 #ff007f !important; /* Casts a sharp pixel line inside the tab frame */
+  }
+  .quick-input-widget {
+    background-color: rgba(0, 0, 0, 0.4) !important; /* Forces a pitch-black frame */
+    border: 1px solid #222222 !important;
+      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5) !important;
+  }
+  .quick-input-list .monaco-list {
+    background-color: rgba(0, 0, 0, 0.4)  !important;
+  }
+  .xquick-input-list-row.focused .monaco-highlighted-label {
+    color: #00ffaa !important; /* Bold neon accent font color */
+    font-weight: bold !important;
+  }
+  .xquick-input-list-row.focused .label-description {
+    color: #777777 !important; /* Slightly dimmed text to prevent overwhelming glare */
+  }
+  .xquick-input-list-row.focused .monaco-keybinding {
+    background-color: #111111 !important;
+    border: 1px solid #222222 !important;
+  }
+  .xquick-input-widget .quick-input-list .quick-input-list-row.focused {
+      background-color: #00ffaa !important;
+      color: #000000 !important;
+  }
+  
+  
+  @keyframes borderSolid12Steps {
+    0%    , 8.32%  { border-color: #00ffaa; } /* Step 1: Neon Teal */
+    8.33% , 16.65% { border-color: #00ff55; } /* Step 2: Neon Green */
+    16.66%, 24.99% { border-color: #aaff00; } /* Step 3: Lime */
+    25.00%, 33.32% { border-color: #ffff00; } /* Step 4: Yellow */
+    33.33%, 41.65% { border-color: #ffaa00; } /* Step 5: Orange */
+    41.66%, 49.99% { border-color: #ff5500; } /* Step 6: Deep Orange */
+    50.00%, 58.32% { border-color: #ff0055; } /* Step 7: Hot Pink */
+    58.33%, 66.65% { border-color: #ff00aa; } /* Step 8: Magenta */
+    66.66%, 74.99% { border-color: #aa00ff; } /* Step 9: Purple */
+    75.00%, 83.32% { border-color: #5500ff; } /* Step 10: Indigo */
+    83.33%, 91.65% { border-color: #0055ff; } /* Step 11: Electric Blue */
+    91.66%, 100%   { border-color: #00aaff; } /* Step 12: Cyan */
+  }
+  
+  /* 🛠️ BULLETPROOF SELECTOR FOR THE FOCUSED PICKLIST ITEM */
+  .monaco-workbench .quick-input-widget .quick-input-list .monaco-list-row {
+    border-color: transparent;
+    border-width: 1px !important;
+    border-style: solid !important;  
+    color: #aaaaaa !important;            /* High contrast dark text */
+  
+  }
+  .monaco-workbench .quick-input-widget .quick-input-list .monaco-list-row::hover,
+  .monaco-workbench .quick-input-widget .quick-input-list .monaco-list-row.focused {
+    color: #ffffff !important;            /* High contrast dark text */
+    background-color: rgba(0, 0, 0, 0.55) !important;
+    animation: borderSolid12Steps 3s steps(1) infinite !important;
+  }
+  
+  
+  .monaco-workbench .quick-input-widget .quick-input-list .monaco-list-row .monaco-keybinding {
+    color: #aaaaaa !important; 
+  }
+  .monaco-workbench .quick-input-widget .quick-input-list .monaco-list-row:hover .monaco-keybinding,
+  .monaco-workbench .quick-input-widget .quick-input-list .monaco-list-row.focused .monaco-keybinding {
+    color: #ffffff !important; 
+  }
+  
+  
+  
+  /* .monaco-workbench .quick-input-widget .quick-input-list .monaco-list-row.focused .label-description, */
+  /* .monaco-workbench .quick-input-widget .quick-input-list .monaco-list-row.focused .monaco-keybinding { */
+  /* .monaco-workbench .quick-input-widget .quick-input-list .monaco-list-row.focused .monaco-highlighted-label span { */
+  /* .monaco-workbench .quick-input-widget .quick-input-list .monaco-list-row .quick-input-list-row-actions .quick-input-action-button, */
+  
+  
+  
+  /* ==============================================================================
+     🎯 RAW COMPONENT FORCE: LOCKS THE ACTIONS BAR SPACE TO STOP THE TEXT JUMP
+     ============================================================================= */
+  
+  /* Force the container bar and gear icon to always stay visible on every line */
+  .monaco-workbench .quick-input-widget .quick-input-list .monaco-list-row .quick-input-list-row-actions,
+  .monaco-workbench .quick-input-widget .quick-input-list .monaco-list-row .quick-input-list-row-actions .quick-input-action-button,
+  .monaco-workbench .quick-input-widget .quick-input-list .monaco-list-row .quick-input-list-row-actions .monaco-action-bar {
+      display: flex !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+      pointer-events: auto !important;
+  }
+  
+  /* Apply a layout padding cushion on background lines to simulate the missing gear icon */
+  .monaco-workbench .quick-input-widget .quick-input-list .monaco-list-row:not(.focused) .quick-input-list-row .monaco-keybinding {
+    padding-right: 26px !important; /* Matches the exact structural footprint of the injected gear */
+  }
+  
+  /* Instantly remove the placeholder padding when focused so the injected gear lands seamlessly */
+  .monaco-workbench .quick-input-widget .quick-input-list .monaco-list-row.focused .quick-input-list-row .monaco-keybinding {
+    padding-right: 4px !important; 
+  }
+  .monaco-workbench .quick-input-widget .quick-input-list .monaco-list-row:hover .quick-input-list-row .monaco-keybinding {
+    padding-right: 4px !important; 
+  }
+  
+  
+  /* ==============================================================================
+     🎯 TARGET BY PLAIN TEXT MATCHING: STRIPIING THE RECENTLY USED LABEL NATIVELY
+     ============================================================================== */
+  
+  /* 1. Target the description label node housing the plain-text string value */
+  x.monaco-workbench .quick-input-widget .quick-input-list .monaco-list-row :is(.meta, .description, span, div) {
+    /* If the element contains our target string payload, destroy it from layout flow */
+    xcontent-visibility: hidden !important; 
+  }
+  
+  /* 2. Alternative direct matching safety rule for modern Chromium text node wrappers */
+  .monaco-workbench .quick-input-widget .quick-input-list .monaco-list-row [title*="recently used"],
+  .monaco-workbench .quick-input-widget .quick-input-list .monaco-list-row [aria-label*="recently used"] {
+    display: none !important;
+    width: 0 !important;
+  }
+  
+  /* 3. Find rows containing the string value marker and alter their default white font color */
+  .monaco-workbench .quick-input-widget .quick-input-list .monaco-list-row:has([title*="recently used"]) .monaco-icon-label,
+  .monaco-workbench .quick-input-widget .quick-input-list .monaco-list-row:has(:contains("recently used")) .monaco-icon-label {
+    color: #ffaa00 !important; /* Forces your desired custom row color accent */
+  }
+  

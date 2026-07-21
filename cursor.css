@@ -37,7 +37,140 @@
 .tab.active {
   border-top: 2px solid #ff007f !important; /* Forces a thicker, cleaner line */
 }
-x.tab.active {
-  xbox-shadow: inset 0 1px 0 0 #ff008066 !important; /* Casts a sharp pixel line inside the tab frame */
-  xbox-shadow: inset 0 1px 0 0 #ff007f !important; /* Casts a sharp pixel line inside the tab frame */
+.quick-input-widget {
+  opacity: 1;
+  background-color: rgba(0, 0, 0, 0.7) !important; /* Forces a pitch-black frame */
+  border: 1px solid #222222 !important;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5) !important;
+}
+.quick-input-list .monaco-list {
+  opacity: 1;
+  background-color: rgba(0, 0, 0, 0)  !important;
+}
+/* ==========================================================================
+   1. BASE STATE
+   ========================================================================== */
+
+/* All background rows are normally fully visible */
+.monaco-workbench .quick-input-widget .quick-input-list .monaco-list-row {
+  opacity: 1;
+  transition: opacity 0.2s ease;
+}
+
+
+/* ==========================================================================
+   2. CONDITION STATE: When the 2nd Row Has Focus
+   ========================================================================== */
+
+/* Force the widget wrapper background color to be completely transparent rgba(0,0,0,0)
+   and strip away default VS Code dropdown shadows/borders */
+.monaco-workbench .quick-input-widget:has(.monaco-list-row:nth-child(2).focused) {
+  background-color: rgba(0, 0, 0, 0) !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+/* Also clear out any background colors on the inner list containers */
+.monaco-workbench .quick-input-widget:has(.monaco-list-row:nth-child(2).focused) .quick-input-header,
+.monaco-workbench .quick-input-widget:has(.monaco-list-row:nth-child(2).focused) .quick-input-list,
+.monaco-workbench .quick-input-widget:has(.monaco-list-row:nth-child(2).focused) .monaco-list {
+  background-color: rgba(0, 0, 0, 0) !important;
+}
+
+/* Force every single unfocused row to drop to 0% opacity */
+.monaco-workbench .quick-input-widget:has(.monaco-list-row:nth-child(2).focused) .monaco-list-row:not(.focused) {
+  opacity: 0 !important;
+}
+
+/* The Focused Row: Always stays 100% bright, showing clearly over the transparent layout */
+.monaco-workbench .quick-input-widget .quick-input-list .monaco-list-row.focused {
+  opacity: 1 !important;
+}
+
+
+@keyframes borderSolid12Steps {
+  0%    , 8.32%  { border-color: #00ffaa; } /* Step 1: Neon Teal */
+  8.33% , 16.65% { border-color: #00ff55; } /* Step 2: Neon Green */
+  16.66%, 24.99% { border-color: #aaff00; } /* Step 3: Lime */
+  25.00%, 33.32% { border-color: #ffff00; } /* Step 4: Yellow */
+  33.33%, 41.65% { border-color: #ffaa00; } /* Step 5: Orange */
+  41.66%, 49.99% { border-color: #ff5500; } /* Step 6: Deep Orange */
+  50.00%, 58.32% { border-color: #ff0055; } /* Step 7: Hot Pink */
+  58.33%, 66.65% { border-color: #ff00aa; } /* Step 8: Magenta */
+  66.66%, 74.99% { border-color: #aa00ff; } /* Step 9: Purple */
+  75.00%, 83.32% { border-color: #5500ff; } /* Step 10: Indigo */
+  83.33%, 91.65% { border-color: #0055ff; } /* Step 11: Electric Blue */
+  91.66%, 100%   { border-color: #00aaff; } /* Step 12: Cyan */
+}
+
+.monaco-workbench .quick-input-widget .quick-input-list .monaco-list-row {
+  border-style: solid;
+  border-width: 1px;
+  border-color: transparent;
+  color: #aaaaaa !important;            /* High-contrast crisp white text */
+  padding-bottom: 2px;
+}
+
+/* Forces the background of the currently focused item in the picklist to solid blue */
+.monaco-workbench .quick-input-widget .quick-input-list .monaco-list-row:hover,
+.monaco-workbench .quick-input-widget .quick-input-list .monaco-list-row.focused {
+  background-color: #0055ff !important; /* Pure high-contrast blue */
+  background-color: rgba(0, 0, 0, 1) !important;
+  color: #ffffff !important;            /* High contrast dark text */
+  animation: borderSolid12Steps 3s steps(1) infinite !important;
+
+}
+
+/* Fixes interior labels on the active row so they remain readable over the blue background */
+.monaco-workbench .quick-input-widget .quick-input-list .monaco-list-row.focused .monaco-icon-label,
+.monaco-workbench .quick-input-widget .quick-input-list .monaco-list-row.focused .label-description,
+.monaco-workbench .quick-input-widget .quick-input-list .monaco-list-row.focused .monaco-keybinding span {
+  color: #ffffff !important;
+}
+
+/* .monaco-workbench .quick-input-widget .quick-input-list .monaco-list-row.focused .label-description, */
+  /* .monaco-workbench .quick-input-widget .quick-input-list .monaco-list-row.focused .monaco-keybinding { */
+  /* .monaco-workbench .quick-input-widget .quick-input-list .monaco-list-row.focused .monaco-highlighted-label span { */
+  /* .monaco-workbench .quick-input-widget .quick-input-list .monaco-list-row .quick-input-list-row-actions .quick-input-action-button, */
+  
+.monaco-workbench .quick-input-widget .quick-input-list .monaco-list-row .quick-input-list-row .label-description{
+  color: green !important;
+}
+
+  /* Force the container bar and gear icon to always stay visible on every line */
+  .monaco-workbench .quick-input-widget .quick-input-list .monaco-list-row .quick-input-list-row-actions,
+  .monaco-workbench .quick-input-widget .quick-input-list .monaco-list-row .quick-input-list-row-actions .quick-input-action-button,
+  .monaco-workbench .quick-input-widget .quick-input-list .monaco-list-row .quick-input-list-row-actions .monaco-action-bar {
+      display: flex !important;
+      visibility: visible !important;
+      opacity: 1 !important;
+      pointer-events: auto !important;
+  }
+
+/* Apply a layout padding cushion on background lines to simulate the missing gear icon */
+.monaco-workbench .quick-input-widget .quick-input-list .monaco-list-row:not(.focused) .quick-input-list-row .monaco-keybinding {
+  padding-right: 26px !important; /* Matches the exact structural footprint of the injected gear */
+}
+
+/* Instantly remove the placeholder padding when focused so the injected gear lands seamlessly */
+.monaco-workbench .quick-input-widget .quick-input-list .monaco-list-row.focused .quick-input-list-row .monaco-keybinding {
+  padding-right: 4px !important; 
+}
+.monaco-workbench .quick-input-widget .quick-input-list .monaco-list-row:hover .quick-input-list-row .monaco-keybinding {
+  padding-right: 4px !important; 
+}
+  
+.quick-input-list-entry-action-bar {
+  color: blue;
+  transform: scale(1.3); /* Boosts size by 30% without shifting layout */
+  transform-origin: center; /* Ensures it scales outward evenly */
+}
+x.monaco-workbench .quick-input-widget .quick-input-list .monaco-list-row .quick-input-list-separator{
+  display:none;
+}
+.monaco-workbench .quick-input-widget .quick-input-list .monaco-list-row .quick-input-list-entry .quick-input-list-separator:not(:empty) + .quick-input-list-entry-action-bar {
+  color: green;
+}
+x.monaco-workbench .quick-input-widget .quick-input-list .monaco-list-row:has(+ .quick-input-list-separator) .quick-input-list-entry-action-bar {
+  color: green;
 }
